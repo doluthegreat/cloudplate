@@ -292,15 +292,12 @@ def update_restaurant(restaurant_id):
 def search_restaurants():
     """Search restaurants with filters: cuisine, min_rating, location"""
     
-    # Get query parameters from the URL
     cuisine = request.args.get('cuisine')
     min_rating = request.args.get('min_rating', type=float)
     location = request.args.get('location')
     
-    # Start with base query
     query = Restaurant.query
     
-    # Apply filters if they exist
     if cuisine:
         query = query.filter(Restaurant.cuisine == cuisine)
     
@@ -308,13 +305,10 @@ def search_restaurants():
         query = query.filter(Restaurant.rating >= min_rating)
     
     if location:
-        # Use ilike for case-insensitive partial matching
         query = query.filter(Restaurant.location.ilike(f'%{location}%'))
     
-    # Execute query and get results
     restaurants = query.all()
     
-    # Convert to JSON format
     results = [{
         'id': r.id,
         'name': r.name,

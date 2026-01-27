@@ -33,20 +33,29 @@ SNS sends email alerts when violations are detected
 
 
 **Architecture**
+
+
+**Application Layer (AWS EC2)**
+
+
 Docker Compose Stack:
-├── Flask API (Port 5000)
-│   └── Handles REST requests
-├── PostgreSQL Database
-│   └── Stores restaurants & reviews
-└── Redis Cache
-    └── Powers real-time leaderboard
+
+Flask API (Port 5000) - Handles REST requests
+PostgreSQL Database - Stores restaurants & reviews
+Redis Cache - Powers real-time leaderboard
+
+**Security Monitoring Layer**
 
 
 AWS Services:
-├── CloudTrail (Audit Logs)
-├── AWS Config (Compliance Rules)
-├── CloudWatch (Logs & Alarms)
-└── SNS (Email Alerts)
+
+CloudTrail - Audit logs for all AWS actions
+AWS Config - Automated compliance rules
+CloudWatch - Application logs & alarms
+SNS - Email alerts for violations
+
+Data Flow:
+User Request → Flask API → PostgreSQL/Redis → CloudWatch Logs → Config Rules → SNS Alerts
 
 **Tech Stack**
 

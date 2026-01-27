@@ -1,4 +1,4 @@
-# Python
+
 __pycache__/
 *.pyc
 *.pyo
@@ -7,13 +7,10 @@ __pycache__/
 venv/
 env/
 
-# Flask
 instance/
 .webassets-cache
 
-# OS
 .DS_Store
 Thumbs.db
 
-# Logs
 *.log

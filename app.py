@@ -117,7 +117,7 @@ def get_leaderboard_from_redis():
 with app.app_context():
     db.create_all()
 
-# Routes
+
 @app.route('/')
 def home():
     try:
@@ -212,6 +212,7 @@ def get_leaderboard():
         "total_restaurants": len(leaderboard),
         "source": "Redis (cached)"
     })
+
 
 @app.route('/leaderboard/top/<int:n>', methods=['GET'])
 def get_top_restaurants(n):

@@ -16,6 +16,7 @@ It combines:
  * Instant alerts - SNS emails security team immediately
 
 **What It Does**
+
 For Users:
 
 Add restaurants and post reviews
@@ -32,32 +33,20 @@ SNS sends email alerts when violations are detected
 
 
 **Architecture**
+Docker Compose Stack:
+├── Flask API (Port 5000)
+│   └── Handles REST requests
+├── PostgreSQL Database
+│   └── Stores restaurants & reviews
+└── Redis Cache
+    └── Powers real-time leaderboard
 
-┌─────────────────────────────────────────┐
-│           AWS EC2 Instance              │
-│  ┌───────────────────────────────┐     │
-│  │     Docker Compose            │     │
-│  │  ┌────────┐  ┌──────────┐    │     │
-│  │  │ Flask  │  │PostgreSQL│    │     │
-│  │  │  API   │──│ Database │    │     │
-│  │  │        │  │          │    │     │
-│  │  └───┬────┘  └──────────┘    │     │
-│  │      │                        │     │
-│  │      │       ┌──────────┐    │     │
-│  │      └───────│  Redis   │    │     │
-│  │              │  Cache   │    │     │
-│  │              └──────────┘    │     │
-│  └───────────────────────────────┘     │
-└─────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────┐
-│      AWS Security Monitoring            │
-│                                         │
-│  CloudTrail → Config Rules → SNS Alerts │
-│       │                                 │
-│       └──→ CloudWatch Logs & Alarms     │
-└─────────────────────────────────────────┘
+
+AWS Services:
+├── CloudTrail (Audit Logs)
+├── AWS Config (Compliance Rules)
+├── CloudWatch (Logs & Alarms)
+└── SNS (Email Alerts)
 
 **Tech Stack**
 

@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:200603@postgres:5432/restaurant_db')
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:----@postgres:5432/restaurant_db')
 REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
